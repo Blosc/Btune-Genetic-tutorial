@@ -1,14 +1,13 @@
-# Btune-tutorial
+# Btune-Genetic-tutorial
 
 First, clone this repo with:
 
-    git clone https://github.com/Blosc/Btune-tutorial
+    git clone https://github.com/Blosc/Btune-Genetic-tutorial
 
 Then, make sure that you are using a Python environment with Python 3.10 or 3.11.  For example, if you are using conda, you can do that easily with:
 
     conda create -n btune-tutorial python=3.11
     conda activate btune-tutorial
-
 
 Install the Btune plugin:
 
@@ -25,172 +24,93 @@ BTUNE_TRACE=1 BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=COMP python rand_int.py
 ```
 
 ```
+Creating data for genetic/inference purposes...
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.0.1.dev
+Btune version: 1.1.0
 Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
 Behaviour: Waits - 0, Softs - 5, Hards - 10, Repeat Mode - STOP
 TRACE: Environment variable BTUNE_MODELS_DIR is not defined
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.0.1.dev
-Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
-Behaviour: Waits - 0, Softs - 5, Hards - 11, Repeat Mode - STOP
-TRACE: Environment variable BTUNE_MODELS_DIR is not defined
 WARNING: Empty metadata, no inference performed
 |    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |      0 |     1 |       8 |         0 |           8 |         4 |         4 |  0.000105 |      1.97x |    CODEC_FILTER |    HARD | W
-|    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |      0 |     0 |       8 |         0 |           8 |         4 |         4 |   6.9e-05 |      2.07x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     1 |       8 |         0 |           8 |         4 |         4 |  2.43e-05 |      3.97x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     0 |       8 |         0 |           8 |         4 |         4 |  1.88e-05 |      3.91x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         4 |         4 |  2.91e-05 |      4.52x |    CODEC_FILTER |    HARD | W
-|        lz4 |      2 |     0 |       8 |         0 |           8 |         4 |         4 |  2.42e-05 |      4.46x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     1 |       8 |         0 |           8 |         4 |         4 |  8.66e-05 |      1.98x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     0 |       8 |         0 |           8 |         4 |         4 |  6.17e-05 |      2.08x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     1 |       8 |         0 |           8 |         4 |         4 |  3.43e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     0 |       8 |         0 |           8 |         4 |         4 |  4.68e-05 |      3.82x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     1 |       8 |         0 |           8 |         4 |         4 |   4.4e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     0 |       8 |         0 |           8 |         4 |         4 |  4.98e-05 |      4.35x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         4 |         4 |  2.46e-05 |      4.52x |    THREADS_COMP |    HARD | W
-|        lz4 |      2 |     1 |       7 |         0 |           8 |         4 |         4 |  2.44e-05 |      4.52x |          CLEVEL |    HARD | -
-|        lz4 |      2 |     1 |       9 |         0 |           8 |         4 |         4 |  2.47e-05 |      4.52x |          CLEVEL |    HARD | W
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         4 |         4 |  2.45e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         0 |           8 |         4 |         4 |  2.45e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         4 |         4 |  2.47e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         0 |           8 |         4 |         4 |  2.47e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         4 |         4 |  2.43e-05 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      0 |     1 |       8 |         0 |           8 |         6 |         6 |  0.000232 |      1.97x |    CODEC_FILTER |    HARD | W
+|        lz4 |      0 |     0 |       8 |         0 |           8 |         6 |         6 |   6.3e-05 |      2.08x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     1 |       8 |         0 |           8 |         6 |         6 |   2.6e-05 |      3.97x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     0 |       8 |         0 |           8 |         6 |         6 |  1.14e-05 |      3.91x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  4.16e-05 |      4.52x |    CODEC_FILTER |    HARD | W
+|        lz4 |      2 |     0 |       8 |         0 |           8 |         6 |         6 |  3.67e-05 |      4.46x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     1 |       8 |         0 |           8 |         6 |         6 |  0.000117 |      1.98x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     0 |       8 |         0 |           8 |         6 |         6 |  8.15e-05 |      2.07x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     1 |       8 |         0 |           8 |         6 |         6 |   3.1e-05 |      3.97x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     0 |       8 |         0 |           8 |         6 |         6 |  5.06e-05 |      3.82x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  6.05e-05 |      4.47x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     0 |       8 |         0 |           8 |         6 |         6 |  5.17e-05 |      4.35x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  1.81e-05 |      4.52x |    THREADS_COMP |    HARD | W
+|        lz4 |      2 |     1 |       7 |         0 |           8 |         6 |         6 |  1.74e-05 |      4.52x |          CLEVEL |    HARD | -
+|        lz4 |      2 |     1 |       9 |         0 |           8 |         6 |         6 |  0.000215 |      4.52x |          CLEVEL |    HARD | -
+|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  1.72e-05 |      4.52x |          CLEVEL |    SOFT | W
+|        lz4 |      2 |     1 |       7 |         0 |           8 |         6 |         6 |   1.7e-05 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       6 |         0 |           8 |         6 |         6 |  1.71e-05 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       7 |         0 |           8 |         6 |         6 |  1.72e-05 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  3.95e-05 |      4.52x |          CLEVEL |    SOFT | -
 NDArray 'rand_int_inference.b2nd' created!
 ```
 
-You can see in the column `Winner` whether the combination is a winner (`W`), it does not improve the previous winner (`-`) or it is a special value chunk meaning that it is really easy to compress no matter the compression parameters (`S`); in the latter case Btune cannot determine whether this is a winner or not.
+Cool! We have done our first attempt at guessing the best parameters.  Read below for a small explanation of the output.
 
-Cool! We have done our first attempt at guessing the best parameters.
+In the `Filter` column you can see the Blosc2 filter that has been selected. 0 means no filter has been used, 1 means `Shuffle` filter and 2 means `BitShuffle` filter. The `Split` column means whether the codec goes over the whole block (0) or if it splits the blocks in parts (of size blocksize/typesize) and compresses them separately (1). The other columns should be self-explanatory.
 
-## Exercise 1
+You can see in the column `Winner` whether the combination is a winner (`W`), it does not improve the previous winner (`-`) or it is a special value chunk (`S`) meaning that it is trivially compressible, no matter the compression parameters; in the latter case Btune cannot determine whether this is a winner or not.
+
+## Exercise 1: experiment with different parameters in COMP performance mode
 
 Execute the previous command changing the different parameters (passed as environment variables).  Some examples:
 
-- BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=DECOMP
 - BTUNE_TRADEOFF=0.1 BTUNE_PERF_MODE=COMP
-- BTUNE_TRADEOFF=0.1 BTUNE_PERF_MODE=DECOMP
 - BTUNE_TRADEOFF=0.9 BTUNE_PERF_MODE=COMP
-- BTUNE_TRADEOFF=0.9 BTUNE_PERF_MODE=DECOMP
 - BTUNE_TRADEOFF=1.0 BTUNE_PERF_MODE=COMP
-- BTUNE_TRADEOFF=1.0 BTUNE_PERF_MODE=DECOMP
 - BTUNE_TRADEOFF=.0 BTUNE_PERF_MODE=COMP
-- BTUNE_TRADEOFF=.0 BTUNE_PERF_MODE=DECOMP
 
 Look at the score and the compression ratios columns.  The smaller the score, the less time it takes to compress/decompress (the faster it is).  Compression ratios are expressed as [uncompressed size / compressed size](https://en.wikipedia.org/wiki/Data_compression_ratio), i.e. the larger, the more storage is saved.
 
 ### Questions
 
 + Which are the codecs and filters that win for tradeoffs favoring compression speed?  Which are the winners for compression ratio?
++ Which are the filters that win for tradeoffs favoring compression speed?  Which are the winners for compression ratio?
++ What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
+
+## Exercise 2: experiment with different parameters in DECOMP performance mode
+
+The DECOMP performance mode only takes decompression time for computing the score.  Execute the previous command changing the different parameters (passed as environment variables).  Some examples:
+
+- BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=DECOMP
+- BTUNE_TRADEOFF=0.1 BTUNE_PERF_MODE=DECOMP
+- BTUNE_TRADEOFF=0.9 BTUNE_PERF_MODE=DECOMP
+- BTUNE_TRADEOFF=1.0 BTUNE_PERF_MODE=DECOMP
+- BTUNE_TRADEOFF=.0 BTUNE_PERF_MODE=DECOMP
+
+### Questions
+
++ Which are the codecs and filters that win for tradeoffs favoring decompression speed?  Which are the winners for compression ratio?
 + What's the perceived difference when `BTUNE_PERF_MODE` is set to 'COMP' and 'DECOMP' respectively?
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
 
-# Training Btune and creating a NN model
+## Exercise 3: experiment with different parameters in BALANCED performance mode
 
-Besides genetic tuning, Btune can also use neural network models that are trained for specific datasets.  With that, Btune can take better informed decisions on the codecs/filters that can lead to the best tradeoff between speed and compression ratio.
+The BALANCED performance mode is a compromise between the previous two modes.  Execute the previous command changing the different parameters (passed as environment variables).  Some examples:
 
-For training a model, you need to install the btune-training package.  First download all the wheels for it by visiting https://digistorage.net/scgpku0k, and unzip it if needed:
+- BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=BALANCED
+- BTUNE_TRADEOFF=0.1 BTUNE_PERF_MODE=BALANCED
+- BTUNE_TRADEOFF=0.9 BTUNE_PERF_MODE=BALANCED
+- BTUNE_TRADEOFF=1.0 BTUNE_PERF_MODE=BALANCED
+- BTUNE_TRADEOFF=.0 BTUNE_PERF_MODE=BALANCED
 
-```shell
-unzip btune-training-wheels.zip
-```
+### Questions
 
-Then install the one that correspond to your platform; for example, if you are on a Mac with an ARM64 processor:
++ Which are the codecs and filters that win for tradeoffs favoring a balanced speed?  Which are the winners for compression ratio?
++ What's the perceived difference when `BTUNE_PERF_MODE` is set to 'COMP' and 'DECOMP' respectively?
++ What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
 
-```shell
-python -m pip install btune-training-wheels/btune_training-1.0.0-cp310-cp310-macosx_11_0_arm64.whl -U
-```
-
-and finally, install the dependencies (in the root directory of this tutorial repo):
-
-```shell
-cd <root_tutorial_repo>
-python -m pip install -r requirements-training.txt -U
-```
-
-Then, let's create a file that follows the same distribution as the one in the previous section. This time, we will be adding a `-t` flag, meaning that we are going to create a larger file (the training process requires relatively large datasets for being accurate enough) :
-
-```shell
-cd inference
-python rand_int.py -t
-ls -l rand_int_training.b2nd
-```
-
-Now, we can start the training process.  Let's first do the necessary measurements (for entropy and cratios and times for codecs/filters):
-
-```shell
-cd ../training
-python gather_data.py ../inference/rand_int_training.b2nd
-```
-
-We can proceed with the training as such.  Let's start generating models for 'c'ompression:
-
-```shell
-python training_chunk.py c ../inference rand_int_training.b2nd.meas
-```
-
-In the output we can see the most predicted codecs and filters for every tradeoff.  For example, on my machine I get:
-
-```
-                  1st most predicted               2nd most predicted 3rd most predicted Mean cratio Mean cspeed (GB/s) Mean dspeed (GB/s)
-0.0  lz4-shuffle-bytedelta-nosplit-5                                -                  -        3.91               2.55               2.57
-0.1  lz4-shuffle-bytedelta-nosplit-5                                -                  -        3.91               2.55               2.57
-0.2  lz4-shuffle-bytedelta-nosplit-5                                -                  -        3.91               2.55               2.57
-0.3  lz4-shuffle-bytedelta-nosplit-5                                -                  -        3.91               2.55               2.57
-0.4  lz4-shuffle-bytedelta-nosplit-5                                -                  -        3.91               2.55               2.57
-0.5  lz4-shuffle-bytedelta-nosplit-5                                -                  -        3.91               2.55               2.57
-0.6         lz4-bitshuffle-nosplit-5  lz4-shuffle-bytedelta-nosplit-5                  -        4.46               2.11               2.25
-0.7         lz4-bitshuffle-nosplit-5                                -                  -        4.46               2.11               2.25
-0.8         lz4-bitshuffle-nosplit-5                                -                  -        4.46               2.11               2.25
-0.9         lz4-bitshuffle-nosplit-5                                -                  -        4.46               2.11               2.25
-1.0        zstd-bitshuffle-nosplit-9                                -                  -        4.55               0.07               2.38
-```
-
-Now, let's generate the models for 'd'ecompression:
-
-```shell
-python training_chunk.py d ../inference rand_int_training.b2nd.meas
-```
-
-Here we have the most predicted codecs and filters:
-
-```
-                      1st most predicted            2nd most predicted 3rd most predicted Mean cratio Mean cspeed (GB/s) Mean dspeed (GB/s)
-0.0  blosclz-shuffle-bytedelta-nosplit-5                             -                  -        3.82               0.89                3.9
-0.1  blosclz-shuffle-bytedelta-nosplit-5                             -                  -        3.82               0.89                3.9
-0.2  blosclz-shuffle-bytedelta-nosplit-5                             -                  -        3.82               0.89                3.9
-0.3  blosclz-shuffle-bytedelta-nosplit-5                             -                  -        3.82               0.89                3.9
-0.4  blosclz-shuffle-bytedelta-nosplit-5                             -                  -        3.82               0.89                3.9
-0.5  blosclz-shuffle-bytedelta-nosplit-5  blosclz-bitshuffle-nosplit-5                  -        3.82               0.89                3.9
-0.6         blosclz-bitshuffle-nosplit-5                             -                  -        4.35               0.89               3.29
-0.7         blosclz-bitshuffle-nosplit-5                             -                  -        4.35               0.89               3.29
-0.8            zstd-bitshuffle-nosplit-6                             -                  -        4.54               0.51               2.57
-0.9            zstd-bitshuffle-nosplit-6                             -                  -        4.54               0.51               2.57
-1.0            zstd-bitshuffle-nosplit-9                             -                  -        4.55               0.07               2.38
-```
-
-Now we have our models ready to be used:
-
-```shell
-ls model*
-```
-
-```output
-model_comp.json      model_comp.tflite    model_decomp.json    model_decomp.tflite
-```
-
-Note how we have two set of files that store the models: two files for the 'comp'ression model and another two for the "decomp"ression one.  These will be used to predict (infer) the codecs and filters for new datasets.  Note that these models are mainly useful for datasets that follows the same patterns as those used for the training.
-
-Let's move them to another directory:
-
-```shell
-mkdir ../inference/rand_int_training.model
-mv model* ../inference/rand_int_training.model
-```
-
-# Using trained Btune models
+# Using trained Btune models [TBD]
 
 With the models, we can predict the best codecs/filters during the creation of new datasets.
 
