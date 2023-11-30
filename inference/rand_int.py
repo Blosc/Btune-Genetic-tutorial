@@ -24,7 +24,7 @@ if len(sys.argv) > 1 and sys.argv[1] == '-t':
     print(f"NDArray '{urlpath_training}' created!")
 else:
     print("Creating data for genetic/inference purposes...")
-    a = rng.integers(low=0, high=10000, size=int(1e5), dtype=np.int64)
+    a = rng.integers(low=0, high=10000, size=int(15e4), dtype=np.int64)
     urlpath_inference = urlpath % "inference"
     _ = blosc2.asarray(a, urlpath=urlpath_inference, mode="w", chunks=chunks)
     print(f"NDArray '{urlpath_inference}' created!")

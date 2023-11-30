@@ -26,38 +26,48 @@ BTUNE_TRACE=1 BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=COMP python rand_int.py
 ```
 Creating data for genetic/inference purposes...
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.1.0
+Btune version: 1.1.1.dev
 Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
 Behaviour: Waits - 0, Softs - 5, Hards - 10, Repeat Mode - STOP
 TRACE: Environment variable BTUNE_MODELS_DIR is not defined
 WARNING: Empty metadata, no inference performed
-|    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |      0 |     1 |       8 |         0 |           8 |         6 |         6 |  0.000232 |      1.97x |    CODEC_FILTER |    HARD | W
-|        lz4 |      0 |     0 |       8 |         0 |           8 |         6 |         6 |   6.3e-05 |      2.08x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     1 |       8 |         0 |           8 |         6 |         6 |   2.6e-05 |      3.97x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     0 |       8 |         0 |           8 |         6 |         6 |  1.14e-05 |      3.91x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  4.16e-05 |      4.52x |    CODEC_FILTER |    HARD | W
-|        lz4 |      2 |     0 |       8 |         0 |           8 |         6 |         6 |  3.67e-05 |      4.46x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     1 |       8 |         0 |           8 |         6 |         6 |  0.000117 |      1.98x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     0 |       8 |         0 |           8 |         6 |         6 |  8.15e-05 |      2.07x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     1 |       8 |         0 |           8 |         6 |         6 |   3.1e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     0 |       8 |         0 |           8 |         6 |         6 |  5.06e-05 |      3.82x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  6.05e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     0 |       8 |         0 |           8 |         6 |         6 |  5.17e-05 |      4.35x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  1.81e-05 |      4.52x |    THREADS_COMP |    HARD | W
-|        lz4 |      2 |     1 |       7 |         0 |           8 |         6 |         6 |  1.74e-05 |      4.52x |          CLEVEL |    HARD | -
-|        lz4 |      2 |     1 |       9 |         0 |           8 |         6 |         6 |  0.000215 |      4.52x |          CLEVEL |    HARD | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  1.72e-05 |      4.52x |          CLEVEL |    SOFT | W
-|        lz4 |      2 |     1 |       7 |         0 |           8 |         6 |         6 |   1.7e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       6 |         0 |           8 |         6 |         6 |  1.71e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       7 |         0 |           8 |         6 |         6 |  1.72e-05 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         0 |           8 |         6 |         6 |  3.95e-05 |      4.52x |          CLEVEL |    SOFT | -
+|    Codec   | Filter | Split | C.Level | C.Threads | D.Threads |  S.Score  |  C.Ratio   |   Btune State   | Readapt | Winner
+|        lz4 |      0 |     1 |       8 |         6 |         6 |      5.78 |      1.96x |    CODEC_FILTER |    HARD | W
+|        lz4 |      0 |     0 |       8 |         6 |         6 |      14.7 |      2.07x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     1 |       8 |         6 |         6 |      32.8 |      3.97x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     0 |       8 |         6 |         6 |      53.7 |      3.91x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |         6 |         6 |      28.2 |      4.52x |    CODEC_FILTER |    HARD | W
+|        lz4 |      2 |     0 |       8 |         6 |         6 |      16.4 |      4.46x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     1 |       8 |         6 |         6 |      8.53 |      1.99x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     0 |       8 |         6 |         6 |      12.2 |      2.08x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     1 |       8 |         6 |         6 |      32.3 |      3.97x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     0 |       8 |         6 |         6 |      19.8 |      3.82x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     1 |       8 |         6 |         6 |      23.8 |      4.47x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     0 |       8 |         6 |         6 |      19.5 |      4.35x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |         6 |         6 |      57.6 |      4.52x |    THREADS_COMP |    HARD | W
+|        lz4 |      2 |     1 |       7 |         6 |         6 |      59.3 |      4.52x |          CLEVEL |    HARD | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      57.4 |      4.52x |          CLEVEL |    HARD | W
+|        lz4 |      2 |     1 |       8 |         6 |         6 |      58.8 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      49.2 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       8 |         6 |         6 |        59 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      58.2 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       8 |         6 |         6 |      58.9 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      19.6 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       8 |         6 |         6 |      39.4 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      55.5 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       8 |         6 |         6 |      57.5 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      60.3 |      4.52x |          CLEVEL |    SOFT | -
+|        lz4 |      0 |     1 |       9 |         6 |         6 |      14.7 |      1.97x |    CODEC_FILTER |    HARD | -
+|        lz4 |      0 |     0 |       9 |         6 |         6 |      16.2 |      2.07x |    CODEC_FILTER |    HARD | -
+|        lz4 |      1 |     1 |       9 |         6 |         6 |      87.6 |      3.97x |    CODEC_FILTER |    HARD | -
+|        lz4 |      1 |     0 |       9 |         6 |         6 |      80.6 |      3.91x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       9 |         6 |         6 |      52.4 |      4.52x |    CODEC_FILTER |    HARD | -
 NDArray 'rand_int_inference.b2nd' created!
 ```
 
 Cool! We have done our first attempt at guessing the best parameters.  Read below for a small explanation of the output.
 
-In the `Filter` column you can see the Blosc2 filter that has been selected. 0 means no filter has been used, 1 means `Shuffle` filter and 2 means `BitShuffle` filter. The `Split` column means whether the codec goes over the whole block (0) or if it splits the blocks in parts (of size blocksize/typesize) and compresses them separately (1). The other columns should be self-explanatory.
+In the `Filter` column you can see the Blosc2 filter that has been selected. 0 means no filter has been used, 1 means `Shuffle` filter and 2 means `BitShuffle` filter. The `Split` column means whether the codec goes over the whole block (0) or if it splits the blocks in parts (of size blocksize/typesize) and compresses them separately (1). Finally, the column `S.Score` displays an estimation of the speed of compression/decompression/transmission_time, dependending of the performance mode. The other columns should be self-explanatory.
 
 You can see in the column `Winner` whether the combination is a winner (`W`), it does not improve the previous winner (`-`) or it is a special value chunk (`S`) meaning that it is trivially compressible, no matter the compression parameters; in the latter case Btune cannot determine whether this is a winner or not.
 
