@@ -12,7 +12,7 @@ from time import time
 
 # Create the NDArray
 rng = np.random.default_rng()
-print("Creating data for genetic purposes...")
+print("Creating data for genetic exploration purposes...")
 a = rng.integers(low=0, high=10000, size=int(4e8), dtype=np.int64)
 
 # Compress
@@ -30,15 +30,6 @@ print(f"NDArray created! {schunk.cratio:.2f}x, cspeed={schunk.nbytes / t / 1e6:.
       f"\n size={schunk.nbytes / 1e6:.2f} MB, csize={schunk.cbytes / 1e6:.2f} MB"
       f"\n time={t:.2f} s"
       f"\n{b.info}")
-
-# Compress chunk by chunk
-# t = 0
-# for chunk in b.schunk.iterchunks(dtype=b.dtype):
-#     t0 = time()
-#     _ = blosc2.compress2(chunk, cparams=cparams)
-#     #b_ = blosc2.asarray(chunk, cparams=cparams)
-#     t += time() - t0
-# print(f"Compressed chunk by chunk! {t:.2f} s, cspeed={b.schunk.nbytes / t / 1e6:.2f} MB/s")
 
 # Decompress
 t0 = time()

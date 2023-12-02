@@ -17,52 +17,68 @@ Install the Btune plugin:
 
 To use Btune with Blosc2, set the `BTUNE_TRADEOFF` environment variable to a floating-point number between 0 (to optimize speed) and 1 (to optimize compression ratio). Additionally, you can use `BTUNE_PERF_MODE` to optimize compression, decompression, or to achieve a balance between the two by setting it to `COMP`, `DECOMP`, or `BALANCED`, respectively.
 
-For a trace of what is going on, set the `BTUNE_TRACE` environment variable.  With that, go to the `inference/` directory and type:
+For a trace of what is going on, set the `BTUNE_TRACE` environment variable.  With that, go to a shell and type:
 
 ```
-BTUNE_TRACE=1 BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=COMP python rand_int.py
+BTUNE_TRACE=1 BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=COMP python compr_bench.py
 ```
 
 ```
-Creating data for genetic/inference purposes...
+Creating data for genetic purposes...
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.1.1.dev
+Btune version: 1.1.1
 Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
 Behaviour: Waits - 0, Softs - 5, Hards - 10, Repeat Mode - STOP
 TRACE: Environment variable BTUNE_MODELS_DIR is not defined
 WARNING: Empty metadata, no inference performed
 |    Codec   | Filter | Split | C.Level | C.Threads | D.Threads |  S.Score  |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |      0 |     1 |       8 |         6 |         6 |      5.78 |      1.96x |    CODEC_FILTER |    HARD | W
-|        lz4 |      0 |     0 |       8 |         6 |         6 |      14.7 |      2.07x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     1 |       8 |         6 |         6 |      32.8 |      3.97x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     0 |       8 |         6 |         6 |      53.7 |      3.91x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |         6 |         6 |      28.2 |      4.52x |    CODEC_FILTER |    HARD | W
-|        lz4 |      2 |     0 |       8 |         6 |         6 |      16.4 |      4.46x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     1 |       8 |         6 |         6 |      8.53 |      1.99x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     0 |       8 |         6 |         6 |      12.2 |      2.08x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     1 |       8 |         6 |         6 |      32.3 |      3.97x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     0 |       8 |         6 |         6 |      19.8 |      3.82x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     1 |       8 |         6 |         6 |      23.8 |      4.47x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     0 |       8 |         6 |         6 |      19.5 |      4.35x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |         6 |         6 |      57.6 |      4.52x |    THREADS_COMP |    HARD | W
-|        lz4 |      2 |     1 |       7 |         6 |         6 |      59.3 |      4.52x |          CLEVEL |    HARD | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      57.4 |      4.52x |          CLEVEL |    HARD | W
-|        lz4 |      2 |     1 |       8 |         6 |         6 |      58.8 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      49.2 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         6 |         6 |        59 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      58.2 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         6 |         6 |      58.9 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      19.6 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         6 |         6 |      39.4 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      55.5 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       8 |         6 |         6 |      57.5 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      60.3 |      4.52x |          CLEVEL |    SOFT | -
-|        lz4 |      0 |     1 |       9 |         6 |         6 |      14.7 |      1.97x |    CODEC_FILTER |    HARD | -
-|        lz4 |      0 |     0 |       9 |         6 |         6 |      16.2 |      2.07x |    CODEC_FILTER |    HARD | -
-|        lz4 |      1 |     1 |       9 |         6 |         6 |      87.6 |      3.97x |    CODEC_FILTER |    HARD | -
-|        lz4 |      1 |     0 |       9 |         6 |         6 |      80.6 |      3.91x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       9 |         6 |         6 |      52.4 |      4.52x |    CODEC_FILTER |    HARD | -
-NDArray 'rand_int_inference.b2nd' created!
+|        lz4 |      0 |     1 |       8 |        16 |        16 |     0.258 |      2.06x |    CODEC_FILTER |    HARD | W
+|        lz4 |      0 |     0 |       8 |        16 |        16 |     0.252 |      2.08x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     1 |       8 |        16 |        16 |     0.802 |         4x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     0 |       8 |        16 |        16 |      0.84 |      3.93x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |        16 |        16 |     0.529 |      4.56x |    CODEC_FILTER |    HARD | W
+|        lz4 |      2 |     0 |       8 |        16 |        16 |     0.644 |      4.49x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     1 |       8 |        16 |        16 |     0.155 |      2.08x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     0 |       8 |        16 |        16 |     0.134 |       2.1x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     1 |       8 |        16 |        16 |      0.69 |         4x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     0 |       8 |        16 |        16 |     0.232 |         1x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     1 |       8 |        16 |        16 |     0.545 |         4x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     0 |       8 |        16 |        16 |     0.221 |         1x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |        17 |        16 |     0.408 |      4.56x |    THREADS_COMP |    HARD | -
+|        lz4 |      2 |     1 |       8 |        15 |        16 |     0.552 |      4.56x |    THREADS_COMP |    HARD | W
+|        lz4 |      2 |     1 |       8 |        14 |        16 |     0.431 |      4.56x |    THREADS_COMP |    HARD | -
+<snip>
+NDArray created! 3.52x, cspeed=6721.66 MB/s
+ size=3221.23 MB, csize=914.50 MB
+ time=0.48 s
+type    : NDArray
+shape   : (400000000,)
+chunks  : (4194304,)
+blocks  : (32768,)
+dtype   : int64
+cratio  : 3.52
+cparams : {'blocksize': 262144,
+ 'clevel': 1,
+ 'codec': <Codec.ZSTD: 5>,
+ 'codec_meta': 0,
+ 'filters': [<Filter.SHUFFLE: 1>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>],
+ 'filters_meta': [0, 0, 0, 0, 0, 0],
+ 'nthreads': 16,
+ 'splitmode': <SplitMode.ALWAYS_SPLIT: 1>,
+ 'typesize': 8,
+ 'use_dict': 0}
+dparams : {'nthreads': 16}
+
+NDarray decompressed in one go: 0.47 s, dspeed=6873.87 MB/s
+Summed NumPy in 0.12 s, speed=26034.42 MB/s
+Decompressed chunk by chunk: 0.09 s, dspeed=36793.61 MB/s
+Summed and decompressed chunk by chunk: 0.19 s, dspeed=16823.45 MB/s
+Decompression and checksum OK!
 ```
 
 Cool! We have done our first attempt at guessing the best parameters.  Read below for a small explanation of the output.
@@ -87,6 +103,45 @@ Look at the score and the compression ratios columns.  The smaller the score, th
 + Which are the codecs and filters that win for tradeoffs favoring compression speed?  Which are the winners for compression ratio?
 + Which are the filters that win for tradeoffs favoring compression speed?  Which are the winners for compression ratio?
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
++ With the best guesses, what is the compression ratio and the compression speed achieved by the bench without Btune?
+
+Hint: use this command to get the compression ratio and the compression speed:
+
+```bash
+$ python compr_bench.py
+Creating data for genetic purposes...
+NDArray created! 4.81x, cspeed=9530.12 MB/s
+ size=3221.23 MB, csize=669.51 MB
+ time=0.34 s
+type    : NDArray
+shape   : (400000000,)
+chunks  : (4194304,)
+blocks  : (32768,)
+dtype   : int64
+cratio  : 4.81
+cparams : {'blocksize': 262144,
+ 'clevel': 1,
+ 'codec': <Codec.ZSTD: 5>,
+ 'codec_meta': 0,
+ 'filters': [<Filter.SHUFFLE: 1>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>],
+ 'filters_meta': [0, 0, 0, 0, 0, 0],
+ 'nthreads': 16,
+ 'splitmode': <SplitMode.ALWAYS_SPLIT: 1>,
+ 'typesize': 8,
+ 'use_dict': 0}
+dparams : {'nthreads': 16}
+
+NDarray decompressed in one go: 0.43 s, dspeed=7428.52 MB/s
+Summed NumPy in 0.12 s, speed=27826.85 MB/s
+Decompressed chunk by chunk: 0.05 s, dspeed=62493.87 MB/s
+Summed and decompressed chunk by chunk: 0.13 s, dspeed=25418.46 MB/s
+Decompression and checksum OK!
+```
 
 ## Exercise 2: experiment with different parameters in DECOMP performance mode
 
@@ -103,6 +158,7 @@ The DECOMP performance mode only takes decompression time for computing the scor
 + Which are the codecs and filters that win for tradeoffs favoring decompression speed?  Which are the winners for compression ratio?
 + What's the perceived difference when `BTUNE_PERF_MODE` is set to 'COMP' and 'DECOMP' respectively?
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
++ With the best guesses, what is the compression ratio and the decompression speed achieved by the bench without Btune?
 
 ## Exercise 3: experiment with different parameters in BALANCED performance mode
 
@@ -119,6 +175,7 @@ The BALANCED performance mode is a compromise between the previous two modes.  E
 + Which are the codecs and filters that win for tradeoffs favoring a balanced speed?  Which are the winners for compression ratio?
 + What's the perceived difference when `BTUNE_PERF_MODE` is set to 'COMP' and 'DECOMP' respectively?
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
++ With the best guesses, what is the compression ratio and the compression/decompression speed achieved by the bench without Btune?
 
 # Using trained Btune models [TBD]
 
