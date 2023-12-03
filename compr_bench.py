@@ -26,8 +26,8 @@ t0 = time()
 b = blosc2.asarray(a, cparams=cparams, chunks=chunks, blocks=blocks)
 schunk = b.schunk
 t = time() - t0
-print(f"NDArray created! {schunk.cratio:.2f}x, cspeed={schunk.nbytes / t / 1e6:.2f} MB/s"
-      f"\n size={schunk.nbytes / 1e6:.2f} MB, csize={schunk.cbytes / 1e6:.2f} MB"
+print(f"NDArray created! {schunk.cratio:.2f}x, cspeed={schunk.nbytes / t / 2**30:.2f} GB/s"
+      f"\n size={schunk.nbytes / 2**30:.2f} GB, csize={schunk.cbytes / 2**30:.2f} GB"
       f"\n time={t:.2f} s"
       f"\n{b.info}")
 
@@ -35,20 +35,20 @@ print(f"NDArray created! {schunk.cratio:.2f}x, cspeed={schunk.nbytes / t / 1e6:.
 t0 = time()
 c = b[:]
 t = time() - t0
-print(f"NDarray decompressed in one go: {t:.2f} s, dspeed={b.schunk.nbytes / t / 1e6:.2f} MB/s")
+print(f"NDarray decompressed in one go: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 # Sum NumPy
 t0 = time()
 sum1 = c.sum()
 t = time() - t0
-print(f"Summed NumPy in {t:.2f} s, speed={b.schunk.nbytes / t / 1e6:.2f} MB/s")
+print(f"Summed NumPy in {t:.2f} s, speed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 # Decompress chunk by chunk
 t0 = time()
 for chunk in b.schunk.iterchunks(dtype=b.dtype):
     pass
 t = time() - t0
-print(f"Decompressed chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 1e6:.2f} MB/s")
+print(f"Decompressed chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 # Decompress and sum chunk by chunk
 t0 = time()
@@ -56,7 +56,7 @@ sum2 = 0
 for chunk in b.schunk.iterchunks(dtype=b.dtype):
     sum2 += chunk.sum()
 t = time() - t0
-print(f"Summed and decompressed chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 1e6:.2f} MB/s")
+print(f"Summed and decompressed chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 assert sum1 == sum2
 print("Decompression and checksum OK!")
