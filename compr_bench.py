@@ -17,13 +17,14 @@ a = rng.integers(low=0, high=10000, size=int(4e8), dtype=np.int64)
 
 # Compress
 cparams = dict()
-chunks, blocks = None, None
-#cparams = dict(codec=blosc2.Codec.LZ4, clevel=9, filters=[blosc2.Filter.SHUFFLE], splitmode=blosc2.SplitMode.ALWAYS_SPLIT)
+dparams = dict()
+# Specify your own configuration here
+#cparams = dict(codec=blosc2.Codec.LZ4, clevel=3, filters=[blosc2.Filter.SHUFFLE], splitmode=blosc2.SplitMode.ALWAYS_SPLIT)
 #cparams = dict(codec=blosc2.Codec.ZSTD, clevel=1, filters=[blosc2.Filter.SHUFFLE], splitmode=blosc2.SplitMode.ALWAYS_SPLIT)
-#cparams = dict()
+chunks, blocks = None, None
 #chunks, blocks = (4194304,), (524288,)
 t0 = time()
-b = blosc2.asarray(a, cparams=cparams, chunks=chunks, blocks=blocks)
+b = blosc2.asarray(a, cparams=cparams, dparams=dparams, chunks=chunks, blocks=blocks)
 schunk = b.schunk
 t = time() - t0
 print(f"NDArray created! {schunk.cratio:.2f}x, cspeed={schunk.nbytes / t / 2**30:.2f} GB/s"
@@ -41,14 +42,14 @@ print(f"NDarray decompressed in one go: {t:.2f} s, dspeed={b.schunk.nbytes / t /
 t0 = time()
 sum1 = c.sum()
 t = time() - t0
-print(f"Summed NumPy in {t:.2f} s, speed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
+print(f"Sum NumPy in {t:.2f} s, speed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 # Decompress chunk by chunk
 t0 = time()
 for chunk in b.schunk.iterchunks(dtype=b.dtype):
     pass
 t = time() - t0
-print(f"Decompressed chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
+print(f"Decompress chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 # Decompress and sum chunk by chunk
 t0 = time()
@@ -56,7 +57,7 @@ sum2 = 0
 for chunk in b.schunk.iterchunks(dtype=b.dtype):
     sum2 += chunk.sum()
 t = time() - t0
-print(f"Summed and decompressed chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
+print(f"Decompress and sum chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
 assert sum1 == sum2
 print("Decompression and checksum OK!")
