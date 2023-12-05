@@ -19,54 +19,56 @@ To use Btune with Blosc2, set the `BTUNE_TRADEOFF` environment variable to a flo
 
 For a trace of what is going on, set the `BTUNE_TRACE` environment variable.  With that, go to a shell and type:
 
-```
+```bash
 BTUNE_TRACE=1 BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=COMP python compr_bench.py
 ```
 
 ```
-Creating data for genetic purposes...
+Creating data for genetic exploration purposes...
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.1.1
+Btune version: 1.1.2
 Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
 Behaviour: Waits - 0, Softs - 5, Hards - 10, Repeat Mode - STOP
 TRACE: Environment variable BTUNE_MODELS_DIR is not defined
 WARNING: Empty metadata, no inference performed
 |    Codec   | Filter | Split | C.Level | C.Threads | D.Threads |  S.Score  |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |      0 |     1 |       8 |        16 |        16 |     0.258 |      2.06x |    CODEC_FILTER |    HARD | W
-|        lz4 |      0 |     0 |       8 |        16 |        16 |     0.252 |      2.08x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     1 |       8 |        16 |        16 |     0.802 |         4x |    CODEC_FILTER |    HARD | W
-|        lz4 |      1 |     0 |       8 |        16 |        16 |      0.84 |      3.93x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |        16 |        16 |     0.529 |      4.56x |    CODEC_FILTER |    HARD | W
-|        lz4 |      2 |     0 |       8 |        16 |        16 |     0.644 |      4.49x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     1 |       8 |        16 |        16 |     0.155 |      2.08x |    CODEC_FILTER |    HARD | -
-|    blosclz |      0 |     0 |       8 |        16 |        16 |     0.134 |       2.1x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     1 |       8 |        16 |        16 |      0.69 |         4x |    CODEC_FILTER |    HARD | -
-|    blosclz |      1 |     0 |       8 |        16 |        16 |     0.232 |         1x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     1 |       8 |        16 |        16 |     0.545 |         4x |    CODEC_FILTER |    HARD | -
-|    blosclz |      2 |     0 |       8 |        16 |        16 |     0.221 |         1x |    CODEC_FILTER |    HARD | -
-|        lz4 |      2 |     1 |       8 |        17 |        16 |     0.408 |      4.56x |    THREADS_COMP |    HARD | -
-|        lz4 |      2 |     1 |       8 |        15 |        16 |     0.552 |      4.56x |    THREADS_COMP |    HARD | W
-|        lz4 |      2 |     1 |       8 |        14 |        16 |     0.431 |      4.56x |    THREADS_COMP |    HARD | -
+|        lz4 |      0 |     1 |       8 |        16 |        16 |      7.75 |      2.07x |    CODEC_FILTER |    HARD | W
+|        lz4 |      0 |     0 |       8 |        16 |        16 |       6.5 |      2.08x |    CODEC_FILTER |    HARD | -
+|        lz4 |      1 |     1 |       8 |        16 |        16 |      25.8 |         4x |    CODEC_FILTER |    HARD | W
+|        lz4 |      1 |     0 |       8 |        16 |        16 |        25 |      3.93x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     1 |       8 |        16 |        16 |        17 |      4.56x |    CODEC_FILTER |    HARD | -
+|        lz4 |      2 |     0 |       8 |        16 |        16 |      20.3 |      4.49x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     1 |       8 |        16 |        16 |      4.64 |      2.08x |    CODEC_FILTER |    HARD | -
+|    blosclz |      0 |     0 |       8 |        16 |        16 |      5.09 |       2.1x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     1 |       8 |        16 |        16 |      21.5 |         4x |    CODEC_FILTER |    HARD | -
+|    blosclz |      1 |     0 |       8 |        16 |        16 |      7.04 |         1x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     1 |       8 |        16 |        16 |      16.6 |         4x |    CODEC_FILTER |    HARD | -
+|    blosclz |      2 |     0 |       8 |        16 |        16 |      6.73 |         1x |    CODEC_FILTER |    HARD | -
+|        lz4 |      1 |     1 |       8 |        18 |        16 |      14.8 |         4x |    THREADS_COMP |    HARD | -
+|        lz4 |      1 |     1 |       8 |        14 |        16 |      15.7 |         4x |    THREADS_COMP |    HARD | -
+|        lz4 |      1 |     1 |       7 |        16 |        16 |      17.2 |         4x |          CLEVEL |    HARD | -
+|        lz4 |      1 |     1 |       9 |        16 |        16 |      26.6 |         4x |          CLEVEL |    HARD | W
+|        lz4 |      1 |     1 |       8 |        16 |        16 |      24.2 |         4x |          CLEVEL |    SOFT | -
 <snip>
-NDArray created! 3.52x, cspeed=6721.66 MB/s
- size=3221.23 MB, csize=914.50 MB
- time=0.48 s
+NDArray created! 3.28x, cspeed=5.95 GB/s
+ size=3.00 GB, csize=0.91 GB
+ time=0.50 s
 type    : NDArray
 shape   : (400000000,)
 chunks  : (4194304,)
 blocks  : (32768,)
 dtype   : int64
-cratio  : 3.52
+cratio  : 3.28
 cparams : {'blocksize': 262144,
  'clevel': 1,
  'codec': <Codec.ZSTD: 5>,
  'codec_meta': 0,
- 'filters': [<Filter.SHUFFLE: 1>,
+ 'filters': [<Filter.NOFILTER: 0>,
              <Filter.NOFILTER: 0>,
              <Filter.NOFILTER: 0>,
              <Filter.NOFILTER: 0>,
              <Filter.NOFILTER: 0>,
-             <Filter.NOFILTER: 0>],
+             <Filter.SHUFFLE: 1>],
  'filters_meta': [0, 0, 0, 0, 0, 0],
  'nthreads': 16,
  'splitmode': <SplitMode.ALWAYS_SPLIT: 1>,
@@ -74,10 +76,10 @@ cparams : {'blocksize': 262144,
  'use_dict': 0}
 dparams : {'nthreads': 16}
 
-NDarray decompressed in one go: 0.47 s, dspeed=6873.87 MB/s
-Summed NumPy in 0.12 s, speed=26034.42 MB/s
-Decompressed chunk by chunk: 0.09 s, dspeed=36793.61 MB/s
-Summed and decompressed chunk by chunk: 0.19 s, dspeed=16823.45 MB/s
+NDarray decompressed in one go: 0.47 s, dspeed=6.41 GB/s
+Sum NumPy in 0.12 s, speed=24.43 GB/s
+Decompress chunk by chunk: 0.07 s, dspeed=42.88 GB/s
+Decompress and sum chunk by chunk: 0.15 s, dspeed=20.43 GB/s
 Decompression and checksum OK!
 ```
 
@@ -86,6 +88,8 @@ Cool! We have done our first attempt at guessing the best parameters.  Read belo
 In the `Filter` column you can see the Blosc2 filter that has been selected. 0 means no filter has been used, 1 means `Shuffle` filter and 2 means `BitShuffle` filter. The `Split` column means whether the codec goes over the whole block (0) or if it splits the blocks in parts (of size blocksize/typesize) and compresses them separately (1). Finally, the column `S.Score` displays an estimation of the speed of compression/decompression/transmission_time, dependending of the performance mode. The other columns should be self-explanatory.
 
 You can see in the column `Winner` whether the combination is a winner (`W`), it does not improve the previous winner (`-`) or it is a special value chunk (`S`) meaning that it is trivially compressible, no matter the compression parameters; in the latter case Btune cannot determine whether this is a winner or not.
+
+Note that the tweaking of parameters is done in a 'gentle' mode, i.e. the parameters are changed one by one for every step.  This is done to avoid too much oscillation in the genetic algorithm who decides the winner combination.
 
 ## Exercise 1: experiment with different parameters in COMP performance mode
 
@@ -105,23 +109,25 @@ Look at the score and the compression ratios columns.  The smaller the score, th
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
 + With the best guesses, what is the compression ratio and the compression speed achieved by the bench without Btune?
 
-Hint: use this command to get the compression ratio and the compression speed:
+**Hint**: activate the changes in the `compr_bench.py` (around line 21) and run it again without Btune.  You should see something like:
+
+```bash
 
 ```bash
 $ python compr_bench.py
-Creating data for genetic purposes...
-NDArray created! 4.81x, cspeed=9530.12 MB/s
- size=3221.23 MB, csize=669.51 MB
- time=0.34 s
+Creating data for genetic exploration purposes...
+NDArray created! 4.02x, cspeed=8.32 GB/s
+ size=3.00 GB, csize=0.75 GB
+ time=0.36 s
 type    : NDArray
 shape   : (400000000,)
 chunks  : (4194304,)
 blocks  : (32768,)
 dtype   : int64
-cratio  : 4.81
+cratio  : 4.02
 cparams : {'blocksize': 262144,
- 'clevel': 1,
- 'codec': <Codec.ZSTD: 5>,
+ 'clevel': 3,
+ 'codec': <Codec.LZ4: 1>,
  'codec_meta': 0,
  'filters': [<Filter.SHUFFLE: 1>,
              <Filter.NOFILTER: 0>,
@@ -136,10 +142,10 @@ cparams : {'blocksize': 262144,
  'use_dict': 0}
 dparams : {'nthreads': 16}
 
-NDarray decompressed in one go: 0.43 s, dspeed=7428.52 MB/s
-Summed NumPy in 0.12 s, speed=27826.85 MB/s
-Decompressed chunk by chunk: 0.05 s, dspeed=62493.87 MB/s
-Summed and decompressed chunk by chunk: 0.13 s, dspeed=25418.46 MB/s
+NDarray decompressed in one go: 0.46 s, dspeed=6.52 GB/s
+Sum NumPy in 0.12 s, speed=26.00 GB/s
+Decompress chunk by chunk: 0.05 s, dspeed=64.24 GB/s
+Decompress and sum chunk by chunk: 0.12 s, dspeed=24.71 GB/s
 Decompression and checksum OK!
 ```
 
@@ -177,182 +183,79 @@ The BALANCED performance mode is a compromise between the previous two modes.  E
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
 + With the best guesses, what is the compression ratio and the compression/decompression speed achieved by the bench without Btune?
 
-# Using trained Btune models [TBD]
+# Using trained Btune models
 
-With the models, we can predict the best codecs/filters during the creation of new datasets.
+Btune can use previously trained models to speed up the process of finding the best parameters without manual intervention.  They are in the models directory.  Let's see how to use them.
 
 ## Inference (predictions) in COMPression mode
 
 Let's do the inference for COMPression performance mode:
 
 ```shell
-cd ../inference
-BTUNE_TRADEOFF=0.5 BTUNE_USE_INFERENCE=-1 BTUNE_PERF_MODE=COMP BTUNE_TRACE=1  BTUNE_MODELS_DIR=rand_int_training.model python rand_int.py
+ BTUNE_TRADEOFF=0.5 BTUNE_USE_INFERENCE=-1 BTUNE_PERF_MODE=COMP BTUNE_TRACE=1  BTUNE_MODELS_DIR=models python compr_bench.py
 ```
 
 and the output is something like:
 
 ```
-Creating data for inference purposes...
+Creating data for genetic exploration purposes...
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.0.1.dev
+Btune version: 1.1.2
 Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
 Behaviour: Waits - 0, Softs - 5, Hards - 10, Repeat Mode - STOP
-INFO: Model files found in the 'rand_int_training.model' directory
 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-TRACE: time load model: 0.013766
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.0.1.dev
-Performance Mode: COMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
-Behaviour: Waits - 0, Softs - 5, Hards - 11, Repeat Mode - STOP
-INFO: Model files found in the 'rand_int_training.model' directory
-TRACE: time load model: 0.000186
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000327 inference=0.000830
-|    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |   0.00038 |      3.97x |    CODEC_FILTER |    HARD | W
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000142 inference=0.000006
-|    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.36e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000143 inference=0.000005
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |   1.3e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000140 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.33e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000137 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.34e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000204 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  4.58e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000154 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.34e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000111 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.42e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000115 inference=0.000007
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.37e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000109 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.42e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000117 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.47e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000136 inference=0.000007
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  2.48e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000112 inference=0.000008
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.61e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000105 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.43e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000106 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.38e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000102 inference=0.000005
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.35e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000102 inference=0.000006
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.38e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000104 inference=0.000005
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.39e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000105 inference=0.000005
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.36e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=7 codec=1 filter=35 clevel=5 splitmode=2 time entropy=0.000101 inference=0.000005
-|        lz4 |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  1.37e-05 |      3.97x |    CODEC_FILTER |    HARD | -
-NDArray 'rand_int_inference.b2nd' created!
+TRACE: time load model: 0.000873
+TRACE: Inference category=33 codec=0 filter=1 clevel=5 splitmode=1 time entropy=0.002269 inference=0.000019
+|    Codec   | Filter | Split | C.Level | C.Threads | D.Threads |  S.Score  |  C.Ratio   |   Btune State   | Readapt | Winner
+|    blosclz |      1 |     1 |       5 |        16 |        16 |      18.3 |         4x |    CODEC_FILTER |    HARD | W
+TRACE: Inference category=33 codec=0 filter=1 clevel=5 splitmode=1 time entropy=0.000451 inference=0.000010
+|    blosclz |      1 |     1 |       5 |        16 |        16 |      21.1 |         4x |    CODEC_FILTER |    HARD | W
+TRACE: Inference category=33 codec=0 filter=1 clevel=5 splitmode=1 time entropy=0.000680 inference=0.000010
+|    blosclz |      1 |     1 |       5 |        16 |        16 |      20.1 |         4x |    CODEC_FILTER |    HARD | -
+TRACE: Inference category=33 codec=0 filter=1 clevel=5 splitmode=1 time entropy=0.000515 inference=0.000010
+|    blosclz |      1 |     1 |       5 |        16 |        16 |      23.5 |         4x |    CODEC_FILTER |    HARD | W
+<snip>
+NDArray created! 4.03x, cspeed=7.26 GB/s
+ size=3.00 GB, csize=0.75 GB
+ time=0.41 s
+type    : NDArray
+shape   : (400000000,)
+chunks  : (4194304,)
+blocks  : (32768,)
+dtype   : int64
+cratio  : 4.03
+cparams : {'blocksize': 262144,
+ 'clevel': 3,
+ 'codec': <Codec.LZ4: 1>,
+ 'codec_meta': 0,
+ 'filters': [<Filter.SHUFFLE: 1>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>,
+             <Filter.NOFILTER: 0>],
+ 'filters_meta': [0, 0, 0, 0, 0, 0],
+ 'nthreads': 16,
+ 'splitmode': <SplitMode.ALWAYS_SPLIT: 1>,
+ 'typesize': 8,
+ 'use_dict': 0}
+dparams : {'nthreads': 16}
+
+NDarray decompressed in one go: 0.44 s, dspeed=6.83 GB/s
+Sum NumPy in 0.12 s, speed=25.81 GB/s
+Decompress chunk by chunk: 0.05 s, dspeed=63.46 GB/s
+Decompress and sum chunk by chunk: 0.12 s, dspeed=24.17 GB/s
+Decompression and checksum OK!
 ```
 
-### Exercise 2: experiment with different parameters in COMP performance mode
+We see how the inference is done for all the chunks (`BTUNE_USE_INFERENCE=-1`) and then the best parameters are used for the rest of the chunks.
 
-In particular, you can try with different tradeoffs:
+By making a donation to the Blosc project, the Blosc team would train a model for your datasets.  Alternatively, by doing a bit larger donation, you can get access to the training package so you can build your own models without us in the loop.  More info at: https://btune.blosc.org.
 
-- BTUNE_TRADEOFF=0.0  # best speed; compression ratio does not matter
-- BTUNE_TRADEOFF=0.3  # good speed, but add some weight to cratio
-- BTUNE_TRADEOFF=0.5  # a balance between speed and cratio
-- BTUNE_TRADEOFF=0.8  # good cratio, but speed is somewhat important too
-- BTUNE_TRADEOFF=1.0  # best compression ratio; speed does not matter
 
-Also, you can set `BTUNE_USE_INFERENCE` to a positive value to use inference only for the first iterations; after that, Btune will fall back into a 'gentle' genetic mode, also called 'tweaking', for fine-tuning some params like `clevel` or `splitmode`.  Note that the tweaking will start from the set of compression parameters that have won in the previous
+## Final words
 
-### Exercise3: combine inference and tweaking modes
-
-Try with the next values:
-
-- BTUNE_USE_INFERENCE=3   # only do inference for the first 3 chunks and then use tweaking
-- BTUNE_USE_INFERENCE=10  # only do inference for the first 10 chunks and then use tweaking
-
-* How the parameters are tested now?  Can you see the new pattern?
-* How predictions differ from complete inference?
-
-## Inference (predictions) in DECOMPression performance mode
-
-Let's use the model in DECOMPression performance mode now:
-
-```shell
-BTUNE_TRADEOFF=0.5 BTUNE_USE_INFERENCE=-1 BTUNE_PERF_MODE=DECOMP BTUNE_TRACE=1  BTUNE_MODELS_DIR=rand_int_training.model python rand_int.py
-```
-
-```
-Creating data for inference purposes...
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.0.1.dev
-Performance Mode: DECOMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
-Behaviour: Waits - 0, Softs - 5, Hards - 10, Repeat Mode - STOP
-INFO: Model files found in the 'rand_int_training.model' directory
-INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-TRACE: time load model: 0.000626
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Btune version: 1.0.1.dev
-Performance Mode: DECOMP, Compression tradeoff: 0.500000, Bandwidth: 20 GB/s
-Behaviour: Waits - 0, Softs - 5, Hards - 11, Repeat Mode - STOP
-INFO: Model files found in the 'rand_int_training.model' directory
-TRACE: time load model: 0.000159
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000386 inference=0.000073
-|    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  0.000146 |      4.47x |    CODEC_FILTER |    HARD | W
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000380 inference=0.000009
-|    Codec   | Filter | Split | C.Level | Blocksize | Shufflesize | C.Threads | D.Threads |   Score   |  C.Ratio   |   Btune State   | Readapt | Winner
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  2.93e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000213 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.27e-05 |      4.47x |    CODEC_FILTER |    HARD | W
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000175 inference=0.000026
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.35e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000354 inference=0.000009
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.52e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000110 inference=0.000008
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.43e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=3 codec=0 filter=35 clevel=5 splitmode=2 time entropy=0.000263 inference=0.000007
-|    blosclz |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  6.39e-06 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=3 codec=0 filter=35 clevel=5 splitmode=2 time entropy=0.000104 inference=0.000006
-|    blosclz |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  6.11e-06 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000131 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.35e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000233 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.29e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000107 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.33e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000104 inference=0.000005
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.25e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000101 inference=0.000005
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.24e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000102 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.27e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000183 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |   1.3e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=3 codec=0 filter=35 clevel=5 splitmode=2 time entropy=0.000105 inference=0.000005
-|    blosclz |     35 |     1 |       5 |         0 |           8 |         6 |         6 |  5.83e-06 |      3.97x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000109 inference=0.000006
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.32e-05 |      4.47x |    CODEC_FILTER |    HARD | W
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000106 inference=0.000005
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.27e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000108 inference=0.000005
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.26e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-TRACE: Inference category=2 codec=0 filter=2 clevel=5 splitmode=2 time entropy=0.000101 inference=0.000005
-|    blosclz |      2 |     1 |       5 |         0 |           8 |         6 |         6 |  1.27e-05 |      4.47x |    CODEC_FILTER |    HARD | -
-NDArray 'rand_int_inference.b2nd' created!
-```
-
-### Exercise 4: experiment with different parameters in DECOMP performance mode
-
-Go to instructions in exercises 2 and 3 and retry them for DECOMP mode.
-
-## Final exercise: train models with your own datasets!
-
-Go copy the `rand_int.py` script to some other name (e.g. `my_data.py`) and use some other dataset than the one there (you can read them from your favorite format, like HDF5 or Zarr).  Change the name of the output file too (but keep the .b2nd extension, as it will remain a Blosc2 format).  Train with that one, and store the model in another directory.
-
-Indeed, you can bring your own data, create a NumPy array out of it, and export it to the Blosc2 format.  We recommend to make sure to populate the new array with at least 3000 chunks; in our experience, this is a good minimum to ensure a decent training.
-
-Play with the parameters stated in exercises 2 and 3 and get your own conclusions.  Raise your hand and let's have a discussion in case you get 'interesting' results.
+We have seen how Btune helps you in finding the best compression parameters for specific datasets.  In the previous exercises, we have used a synthetic dataset, but you can use your own data and let Btune help you in finding the best parameters for it.  An easy way to test with your data, is to create a NumPy array out of it, and export it to the Blosc2 format via the [blosc2.asarray() function](https://www.blosc.org/python-blosc2/reference/autofiles/ndarray/blosc2.asarray.html).  Then, you can use the `compr_bench.py` script to test the different parameters.
 
 That's all folks; hope you have enjoyed the ride!  For more information about Btune, check out: https://btune.blosc.org
 
