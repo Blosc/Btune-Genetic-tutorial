@@ -17,7 +17,11 @@ rng = np.random.default_rng()
 print("Creating data for genetic exploration purposes...")
 a = rng.integers(low=0, high=10000, size=int(4e8), dtype=np.int64)
 
-# Btune params
+# Btune environment params
+os.environ["BTUNE_TRACE"] = "1"
+# Uncomment the following to forcing the use of Btune (or do it in the shell)
+#os.environ["BTUNE_TRADEOFF"] = "0.5"  # 0.0 (speed) - 1.0 (compression)
+# Btune programmatic params
 base_dir = os.path.dirname(__file__)
 btune_params = {
     ## genetic exploration
