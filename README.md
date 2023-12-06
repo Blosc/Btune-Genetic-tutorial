@@ -1,5 +1,17 @@
 # Btune-Genetic-tutorial
 
+Btune is a dynamic plugin for Blosc2 that can help you find the optimal combination of compression parameters for your datasets. Depending on your needs, Btune has three different tiers of support for tuning datasets:
+
++ **Genetic**: Btune can be used to find the best compression parameters for a given dataset.  This is done by using a genetic algorithm that tries to find the best combination of parameters for a given dataset.  This is the default mode of operation and is totally free (as in beer and as in freedom).
+
++ **Trained (Btune Models)**: The goal is automatically selecting the best compression parameters, but using a previously trained model.  This is done by using a neural network that has been trained with a large number of data chunks.  This mode is much faster to operate than the genetic mode, but it requires a donation to the Blosc project.
+
++ **Fully managed (Btune Studio)**: The user receives a license to use our training software, which enables on-site training for an unlimited number of datasets.  This is done by using a neural network that has been trained with a large number of data chunks.  It requires a donation to the Blosc project.
+
+In this tutorial, we will see how to use the genetic mode of Btune, with a small incursion to the Btune models.  For more information about Btune, check out: https://btune.blosc.org
+
+## Preliminaries
+
 First, clone this repo with:
 
     git clone https://github.com/Blosc/Btune-Genetic-tutorial
@@ -13,11 +25,13 @@ Install the Btune plugin:
 
     pip install blosc2-btune -U
 
-# Genetic tuning
+## Genetic tuning
 
 To use Btune with Blosc2, set the `BTUNE_TRADEOFF` environment variable to a floating-point number between 0 (to optimize speed) and 1 (to optimize compression ratio). Additionally, you can use `BTUNE_PERF_MODE` to optimize compression, decompression, or to achieve a balance between the two by setting it to `COMP`, `DECOMP`, or `BALANCED`, respectively.
 
-For a trace of what is going on, set the `BTUNE_TRACE` environment variable.  With that, go to a shell and type:
+**Note**: Most of the environment variables in this tutorial can be set in the `btune_params` dict in the `compr_bench.py` script. If you prefer to set them in the script, just uncomment the lines around line 21.  However, you need to set at least the `BTUNE_TRADEOFF` and `BTUNE_TRACE` environment variables in the shell for Btune operation.
+
+For a trace of what is going on, set the `BTUNE_TRACE` environment variable.  With that, go to a (bash) shell and type:
 
 ```bash
 BTUNE_TRACE=1 BTUNE_TRADEOFF=0.5 BTUNE_PERF_MODE=COMP python compr_bench.py
@@ -91,7 +105,7 @@ You can see in the column `Winner` whether the combination is a winner (`W`), it
 
 Note that the tweaking of parameters is done in a 'gentle' mode, i.e. the parameters are changed one by one for every step.  This is done to avoid too much oscillation in the genetic algorithm who decides the winner combination.
 
-## Exercise 1: experiment with different parameters in COMP performance mode
+### Exercise 1: experiment with different parameters in COMP performance mode
 
 Execute the previous command changing the different parameters (passed as environment variables).  Some examples:
 
@@ -149,7 +163,7 @@ Decompress and sum chunk by chunk: 0.12 s, dspeed=24.71 GB/s
 Decompression and checksum OK!
 ```
 
-## Exercise 2: experiment with different parameters in DECOMP performance mode
+### Exercise 2: experiment with different parameters in DECOMP performance mode
 
 The DECOMP performance mode only takes decompression time for computing the score.  Execute the previous command changing the different parameters (passed as environment variables).  Some examples:
 
@@ -166,7 +180,7 @@ The DECOMP performance mode only takes decompression time for computing the scor
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
 + With the best guesses, what is the compression ratio and the decompression speed achieved by the bench without Btune?
 
-## Exercise 3: experiment with different parameters in BALANCED performance mode
+### Exercise 3: experiment with different parameters in BALANCED performance mode
 
 The BALANCED performance mode is a compromise between the previous two modes.  Execute the previous command changing the different parameters (passed as environment variables).  Some examples:
 
@@ -183,11 +197,11 @@ The BALANCED performance mode is a compromise between the previous two modes.  E
 + What happens at extreme values of `BTUNE_TRADEOFF` (0 and 1)?
 + With the best guesses, what is the compression ratio and the compression/decompression speed achieved by the bench without Btune?
 
-# Using trained Btune models
+## Using trained Btune models
 
 Btune can use previously trained models to speed up the process of finding the best parameters without manual intervention.  They are in the models directory.  Let's see how to use them.
 
-## Inference (predictions) in COMPression mode
+### Inference (predictions) in COMPression mode
 
 Let's do the inference for COMPression performance mode:
 
