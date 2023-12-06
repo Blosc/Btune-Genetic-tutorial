@@ -11,21 +11,17 @@ import blosc2_btune
 from time import time
 import os
 
-
-# Create the NDArray
-rng = np.random.default_rng()
-print("Creating data for genetic exploration purposes...")
-a = rng.integers(low=0, high=10000, size=int(4e8), dtype=np.int64)
+base_dir = os.path.dirname(__file__)
 
 # Btune environment params
 os.environ["BTUNE_TRACE"] = "1"
 # Uncomment the following to forcing the use of Btune (or do it in the shell)
 #os.environ["BTUNE_TRADEOFF"] = "0.5"  # 0.0 (speed) - 1.0 (compression)
-# Btune programmatic params
-base_dir = os.path.dirname(__file__)
+
+# Btune programmatic params. Uncomment to override the defaults.
 btune_params = {
     ## genetic exploration
-    'perf_mode': blosc2_btune.PerformanceMode.COMP,
+    #'perf_mode': blosc2_btune.PerformanceMode.COMP,
     #'cparams_hint': False,   # whether use the cparams specified in the context or not
     #'nwaits': 0,
     #'nsofts': 5,
@@ -51,6 +47,11 @@ chunks, blocks = None, None
 urlpath = None
 # Uncomment below to store the data in a file instead of in-memory
 #urlpath = "compr_bench.b2nd"
+
+# Create the NDArray
+rng = np.random.default_rng()
+print("Creating data for genetic exploration purposes...")
+a = rng.integers(low=0, high=10000, size=int(4e8), dtype=np.int64)
 
 # Compress
 t0 = time()
