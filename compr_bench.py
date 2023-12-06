@@ -89,5 +89,5 @@ for chunk in b.schunk.iterchunks(dtype=b.dtype):
 t = time() - t0
 print(f"Decompress and sum chunk by chunk: {t:.2f} s, dspeed={b.schunk.nbytes / t / 2**30:.2f} GB/s")
 
-assert sum1 == sum2
+np.testing.assert_almost_equal(sum1, sum2)
 print("Decompression and checksum OK!")
