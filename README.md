@@ -264,13 +264,10 @@ Decompression and checksum OK!
 
 We see how the inference is done for all the chunks (`BTUNE_USE_INFERENCE=-1`) and then the best parameters are used for the rest of the chunks.
 
-By making a donation to the Blosc project, the Blosc team would train a model for your datasets.  Alternatively, by doing a bit larger donation, you can get access to the training package so you can build your own models without us in the loop.  More info at: https://btune.blosc.org.
-
-
 ## Final words
 
 We have seen how Btune helps you in finding the best compression parameters for specific datasets.  In the previous exercises, we have used a synthetic dataset, but you can use your own data and let Btune help you in finding the best parameters for it.  An easy way to test with your data, is to create a NumPy array out of it, and export it to the Blosc2 format via the [blosc2.asarray() function](https://www.blosc.org/python-blosc2/reference/autofiles/ndarray/blosc2.asarray.html).  Then, you can use the `compr_bench.py` script to test the different parameters.
 
-That's all folks; hope you have enjoyed the ride!  For more information about Btune, check out: https://btune.blosc.org
+That's all folks; hope you have enjoyed the ride!  For more information about Btune, check out: https://ironarray.io/btune
 
-Inquiries?  contact@blosc.org
+Inquiries?  contact@ironarray.io
